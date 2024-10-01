@@ -9,15 +9,28 @@ import SwiftUI
 
 struct HabitDetailView: View {
     @Binding var activity: Activity
-
+    
     var body: some View {
         NavigationStack {
             VStack {
-                Text(activity.description)
-                Text(activity.count, format: .number)
-                Button("Record practice") {
-                    activity.count += 1
+                VStack {
+                    Button("Log activity", systemImage: "plus.circle.fill") {
+                        activity.count += 1
+                    }
+                    .font(.largeTitle)
+                    .padding(14)
+                    .background(.orange)
+                    .clipShape(.rect(cornerRadius: 20))
                 }
+                VStack(alignment: .leading) {
+                    Text("Goal description:")
+                        .font(.headline)
+                    Text(activity.goalDescription)
+                        .font(.subheadline)
+                }
+                Spacer()
+                
+                Text(activity.count, format: .number)
             }
             .navigationTitle(activity.name)
         }
@@ -26,9 +39,11 @@ struct HabitDetailView: View {
 
 
 
+
+
 #Preview {
     @Previewable @State var activity = Activity(name: "Violin",
-                                                description: "Practice for orchestra",
+                                                goalDescription: "Practice for orchestra",
                                                 count: 1)
     HabitDetailView(activity: $activity)
 }

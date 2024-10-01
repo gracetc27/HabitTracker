@@ -9,6 +9,6 @@ import SwiftUI
 struct Activity: Identifiable, Codable {
     var id = UUID()
     var name: String
-    var description: String
+    var goalDescription: String
     var count: Int
 }

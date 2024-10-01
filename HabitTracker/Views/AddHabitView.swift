@@ -10,7 +10,7 @@ import SwiftUI
 struct AddHabitView: View {
     @Environment(\.dismiss) var dismiss
     @State private var name = ""
-    @State private var description = ""
+    @State private var goalDescription = ""
     @State private var count = 0
     
 
@@ -22,13 +22,13 @@ struct AddHabitView: View {
                 Section("Habit name") {
                     TextField("Enter name", text: $name)
                 }
-                Section("Activity description") {
-                    TextField("Enter description", text: $description)
+                Section("Goal description") {
+                    TextField("Enter description", text: $goalDescription)
                 }
             }
             .toolbar {
                 Button("Save") {
-                    let item = Activity(name: name, description: description, count: count)
+                    let item = Activity(name: name, goalDescription: goalDescription, count: count)
                     habits.activities.append(item)
                     dismiss()
                 }
